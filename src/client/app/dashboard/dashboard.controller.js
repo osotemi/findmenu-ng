@@ -11,7 +11,7 @@
     var vm = this;
     vm.news = {
       title: 'findmenu',
-      description: 'Hot Towel Angular is a SPA template for Angular developers.'
+      description: 'La mejor comida a precio de menu'
     };
     vm.messageCount = 0;
     vm.people = [];
