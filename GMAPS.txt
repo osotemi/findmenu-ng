@@ -1,0 +1,44 @@
+Guia para Gmaps:
+
+4_CRUD_MongoDB -> estructura del server a seguir
+- Fluxe:
+	server.js - routes.js - controller.js - persona.js 	-> server
+	server.js - index.html - corejs 				-> client
+----------------------------------------------------------------------------------
+6_MySQL
+- Fluxe:
+	app.js(server) - index.js(routes+controller) - users.js(model) 	-> server
+	app.js - jade 									-> client
+El server escolta al port 8081 i el server MySQL escolta al port 8080.
+Per tant, les rutes per a provar l'ap seran del tipus https://nodejs-angular1-yomogan.c9users.io:8081/
+----------------------------------------------------------------------------------
+7_GMaps
+- Fluxe:
+server.js - config.js(url_mongo) - routes.js(routes+controller) - model.js 	-> server
+server.js - index.html - app.js(routing)+controllers+views		        -> client
+També tenim Gmaps fet en JElderly: la part d'angular la podem reutilitzar i la part de php seria refactoritzar-la a nodejs.
+-------------------------------------------------------------------------------------
+Per a guardar l'API Key de sendgrid/config de bd:
+Versió 1 (la que vulgueu)
+12_Stripe -> només estos 3 arxius:
+	- app.js(server)
+	- .env	  -> totes les API Keys de l'ap (Fb, Twitter, sendgrid, stripe, ...)
+	- _config.js  -> url del server de MySQL
+	I app.js els gasta així:
+		var config = require('../_config');
+		app.set('dbUrl', config.mongoURI[app.settings.env]);
+		mongoose.connect(app.get('dbUrl'));//connect to database MySQL
+
+		process.env.SECRET_KEY//gasta SECRET_KEY del .env
+
+Versió 2 (la que vulgueu)
+10_passport_fb_tw -> només estos 4 arxius:
+	- server.js
+	- auth.js 	-> totes les API Keys de l'ap (Fb, Twitter, sendgrid, stripe, ...)
+	- database.js 	-> url del server de MySQL
+	- passport.js 	-> gasta auth.js així -> var configAuth = require('./auth');
+	I server.js els gasta així:
+		var configDB = require('./config/database.js');
+		mongoose.connect(configDB.url); //connect to database MySQL
+
+		require('./config/passport')(passport); //que gasta auth.js

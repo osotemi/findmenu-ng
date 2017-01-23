@@ -5,7 +5,7 @@
     .module('app.menus')
     .controller('MenusController', MenusController);
 
-  MenusController.$inject = ['logger'];
+  MenusController.$inject = ['$q', 'dataservice','logger'];
   /* @ngInject */
   function MenusController(logger) {
     var vm = this;
